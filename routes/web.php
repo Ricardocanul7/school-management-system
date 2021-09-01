@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('site.welcome');
 });
+
+/* Admin panel routes for React SPA */
+Route::get('admin/', function(){
+    return view('admin.react-app');
+});
+
+/* Override routing to allow React router dom manage it in admin panel SPA*/
+Route::get('/admin/{any_path}', function () {
+    return view('admin.react-app');
+})->where('any_path', '(.*)')->name('admin_root');
